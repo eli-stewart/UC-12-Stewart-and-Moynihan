@@ -60,8 +60,8 @@ function getAreaCode(phoneNum) {
         throw new Error("Invalid phone number: " + error.message);
     }
 
- * Displays the area code for an inputted phone number
- * @param {string} inputId  The element id for the text box
+ * Displays the area code foran inputted phone number
+ * @param {string} inputId  The element id forthe text box
  * @param {string} outputId The element id of message div
  */
 function displayAreaCode(inputId, outputId) {
