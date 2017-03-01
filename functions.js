@@ -71,3 +71,19 @@ function getAreaCode(phoneNum) {
         }
         document.getElementById(outputId).innerHTML = outputText;
     }
+function getCoCode(phoneNum) {
+    var areaCode;
+    try {
+        areaCode = between(phoneNum, ")", "-");
+        areaCode = areaCode.trim();
+        if (areaCode.length == 3 && Number(areaCode)) {
+            return areaCode;
+        }
+        else {
+            throw new Error("Invalid CO code: " + areaCode);
+        }
+    }
+    catch (error) {
+        throw new Error("Invalid phone number: " + error.message);
+    }
+}
