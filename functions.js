@@ -1,5 +1,4 @@
 /**
-<<<<<<< HEAD
 * Removes part of string between two sub strings
 * @param {string} text The original string
 * @param {string} start The starting string
