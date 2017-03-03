@@ -52,38 +52,75 @@ function getAreaCode(phoneNum) {
         throw new Error("Invalid phone number: " + error.message);
     }
 }
-    /**
-     * Displays the area code for an inputted phone number
-     * @param {string} inputId  The element id forthe text box
-     * @param {string} outputId The element id of message div
-     */
-    function displayAreaCode(inputId, outputId) {
-        var outputText = "";
-        var phoneNum = document.getElementById(inputId).value;
-        // Now try to get the code
-        try {
-            var areaCode = getAreaCode(phoneNum);
-            outputText = "Your area code is " + areaCode;
-        }
-        catch (error) {
-            console.log(error.message);
-            outputText = error.message;
-        }
-        document.getElementById(outputId).innerHTML = outputText;
-    }
-function getCoCode(phoneNum) {
-    var areaCode;
+/**
+ * Displays the area code for an inputted phone number
+ * @param {string} inputId  The element id forthe text box
+ * @param {string} outputId The element id of message div
+ */
+function displayAreaCode(inputId, outputId) {
+    var outputText = "";
+    var phoneNum = document.getElementById(inputId).value;
+    // Now try to get the code
     try {
-        areaCode = between(phoneNum, ")", "-");
-        areaCode = areaCode.trim();
-        if (areaCode.length == 3 && Number(areaCode)) {
-            return areaCode;
+        var areaCode = getAreaCode(phoneNum);
+        outputText = "Your area code is " + areaCode;
+    }
+    catch (error) {
+        console.log(error.message);
+        outputText = error.message;
+    }
+    document.getElementById(outputId).innerHTML = outputText;
+}
+/**
+ * Returns an CO code from a phone number: (###) ###-####
+ * @param   {string} phoneNum The phone number
+ * @returns {string} The CO code
+ * @throws {Error} If the format is incorrect
+ */
+function getCoCode(phoneNum) {
+    var coCode;
+    try {
+        coCode = between(phoneNum, ")", "-");
+        coCode = areaCode.trim();
+        if (coCode.length == 3 && Number(coCode)) {
+            return coCode;
         }
         else {
-            throw new Error("Invalid CO code: " + areaCode);
+            throw new Error("Invalid CO code: " + coCode);
         }
     }
     catch (error) {
         throw new Error("Invalid phone number: " + error.message);
     }
+}
+/**
+ * Returns a co code from a phone number
+ * @param   {string} phoneNum The phone number
+ * @returns {string} The co code
+ */
+function getCoCode(phoneNum) {
+    var coCode = between(phoneNum, ")", "-");
+    if (coCode == undefined) {
+        return undefined;
+    }
+    return coCode;
+}
+/**
+ * Displays the co code for an inputted phone number
+ * @param {string} inputId  The element id forthe text box
+ * @param {string} outputId The element id of message div
+ */
+function displayCoCode(inputId, outputId) {
+    var outputText = "";
+    var phoneNum = document.getElementById(inputId).value;
+    // Now try to get the code
+    try {
+        var coCode = getCoCode(phoneNum);
+        outputText = "Your CO code is " + coCode;
+    }
+    catch (error) {
+        console.log(error.message);
+        outputText = error.message;
+    }
+    document.getElementById(outputId).innerHTML = outputText;
 }
