@@ -159,8 +159,7 @@ function phoneNumberValidator(phoneNum){
 function displayPhoneNumberValidator(inputId, outputId) {
            var outputText ="":
            var phoneNum = document.getElementById(inputId).value;
-
-            outputText = error.message;
+            outputText = phoneNumberValidator(phoneNum);
 
            document.getElementById(outputId).innerHTML = outputText;
        }
