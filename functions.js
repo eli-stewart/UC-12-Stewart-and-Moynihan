@@ -143,16 +143,16 @@ function displayLineCode(inputId, outputId) {
 
 function phoneNumberValidator(phoneNum){
   if ((getAreaCode(phoneNum)).isNaN){
-       return getAreaCode(phoneNum)
+       return getAreaCode(phoneNum);
  }
     if ((getLineCode(phoneNum)).isNaN){
-        return getLineCode(phoneNum)
+        return getLineCode(phoneNum);
     }
    if ((getCoCode(phoneNum)).isNaN){
-       return (getCoCode(phoneNum)
+       return getCoCode(phoneNum);
    }
     else {
-        return phoneNum
+        return phoneNum;
     }
 }
 
@@ -160,5 +160,7 @@ funcion displayPhoneNumberValidator(inputId, outputId) {
            var outputText ="":
            var phoneNum = document.getElementById(inputId).value;
 
-           try {}
+            outputText = error.message;
+
+           document.getElementById(outputId).innerHTML = outputText;
        }
