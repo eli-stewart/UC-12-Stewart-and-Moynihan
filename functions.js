@@ -177,3 +177,25 @@ function displayLineCode(inputId, outputId) {
     }
     document.getElementById(outputId).innerHTML = outputText;
 }
+
+function phoneNumberValidator(phoneNum){
+  if ((getAreaCode(phoneNum)).isNaN){
+       return getAreaCode(phoneNum)
+ }
+    if ((getLineCode(phoneNum)).isNaN){
+        return getLineCode(phoneNum)
+    }
+   if ((getCoCode(phoneNum)).isNaN){
+       return (getCoCode(phoneNum)
+   }
+    else {
+        return phoneNum
+    }
+}
+
+funcion displayPhoneNumberValidator(inputId, outputId) {
+           var outputText ="":
+           var phoneNum = document.getElementById(inputId).value;
+
+           try {}
+       }
