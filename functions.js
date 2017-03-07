@@ -109,7 +109,7 @@ function displayCoCode(inputId, outputId) {
 function getLineCode(phoneNum) {
     var lineCode;
     try {
-        lineCode = phoneNum.slice(9, 14);
+        lineCode = phoneNum.slice(phoneNum.length - 4);
         lineCode = lineCode.trim();
         if (lineCode.length == 4 && Number(lineCode)) {
             return lineCode;
@@ -136,6 +136,7 @@ function displayLineCode(inputId, outputId) {
         outputText = "Your Line code is " + lineCode;
     }
     catch (error) {
+        console.log(error.message);
         outputText = error.message;
     }
     document.getElementById(outputId).innerHTML = outputText;
