@@ -19,18 +19,6 @@ function between(string, start, end) {
     return string.slice(startAt, endAt);
 }
 /**
- * Returns an area code from a phone number
- * @param   {string} phoneNum The phone number
- * @returns {string} The area code
- */
-function getAreaCode(phoneNum) {
-    var areaCode = between(phoneNum, "(", ")");
-    if (areaCode == undefined) {
-        return undefined;
-    }
-    return areaCode;
-}
-/**
  * Returns an area code from a phone number: (###) ###-####
  * @param   {string} phoneNum The phone number
  * @returns {string} The area code
@@ -94,18 +82,6 @@ function getCoCode(phoneNum) {
     }
 }
 /**
- * Returns a co code from a phone number
- * @param   {string} phoneNum The phone number
- * @returns {string} The co code
- */
-function getCoCode(phoneNum) {
-    var coCode = between(phoneNum, ")", "-");
-    if (coCode == undefined) {
-        return undefined;
-    }
-    return coCode;
-}
-/**
  * Displays the co code for an inputted phone number
  * @param {string} inputId  The element id for the text box
  * @param {string} outputId The element id of message div
@@ -133,10 +109,10 @@ function displayCoCode(inputId, outputId) {
 function getLineCode(phoneNum) {
     var lineCode;
     try {
-        lineCode = between(phoneNum, ")", "-");
+        lineCode = phoneNum.slice(9, 14);
         lineCode = lineCode.trim();
-        if (lineCode.length == 3 && Number(lineCode)) {
-            return coCode;
+        if (lineCode.length == 4 && Number(lineCode)) {
+            return lineCode;
         }
         else {
             throw new Error("Invalid Line code: " + lineCode);
@@ -145,18 +121,6 @@ function getLineCode(phoneNum) {
     catch (error) {
         throw new Error("Invalid phone number: " + error.message);
     }
-}
-/**
- * Returns a line code from a phone number
- * @param   {string} phoneNum The phone number
- * @returns {string} The line code
- */
-function getLineCode(phoneNum) {
-    var lineCode = phoneNum.slice(9, 14);
-    if (lineCode == undefined) {
-        return undefined;
-    }
-    return lineCode;
 }
 /**
  * Displays the line code for an inputted phone number
@@ -168,11 +132,10 @@ function displayLineCode(inputId, outputId) {
     var phoneNum = document.getElementById(inputId).value;
     // Now try to get the code
     try {
-        var coCode = getLineCode(phoneNum);
+        var lineCode = getLineCode(phoneNum);
         outputText = "Your Line code is " + lineCode;
     }
     catch (error) {
-        console.log(error.message);
         outputText = error.message;
     }
     document.getElementById(outputId).innerHTML = outputText;
