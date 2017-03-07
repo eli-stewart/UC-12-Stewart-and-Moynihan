@@ -156,7 +156,7 @@ function phoneNumberValidator(phoneNum){
     }
 }
 
-funcion displayPhoneNumberValidator(inputId, outputId) {
+function displayPhoneNumberValidator(inputId, outputId) {
            var outputText ="":
            var phoneNum = document.getElementById(inputId).value;
 
