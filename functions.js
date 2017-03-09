@@ -109,7 +109,7 @@ function displayCoCode(inputId, outputId) {
 function getLineCode(phoneNum) {
     var lineCode;
     try {
-        lineCode = phoneNum.slice(phoneNum.length - 4);
+        lineCode = phoneNum.slice((phoneNum.length - 4));
         lineCode = lineCode.trim();
         if (lineCode.length == 4 && Number(lineCode)) {
             return lineCode;
@@ -137,6 +137,37 @@ function displayLineCode(inputId, outputId) {
     }
     catch (error) {
         console.log(error.message);
+        outputText = error.message;
+    }
+    document.getElementById(outputId).innerHTML = outputText;
+}
+
+function phoneNumberValidator(phoneNum) {
+    if ((getAreaCode(phoneNum)).isNaN) {
+        return getAreaCode(phoneNum);
+    }
+    if ((getLineCode(phoneNum)).isNaN) {
+        return getLineCode(phoneNum);
+    }
+    if ((getCoCode(phoneNum)).isNaN) {
+        return getCoCode(phoneNum);
+    }
+    if (phoneNum.length != 13) {
+        throw new Error("Invalid phone number: Incorrect length")
+    }
+    else {
+        return phoneNum;
+    }
+}
+
+function displayPhoneNumberValidator(inputId, outputId) {
+    var outputText = "";
+    var phoneNum = document.getElementById(inputId).value;
+    try {
+        var phoneNum = phoneNumberValidator(phoneNum);
+        outputText = "Your phone number " + phoneNum + " is valid";
+    }
+    catch (error) {
         outputText = error.message;
     }
     document.getElementById(outputId).innerHTML = outputText;
