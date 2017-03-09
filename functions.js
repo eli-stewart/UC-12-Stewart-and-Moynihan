@@ -140,6 +140,7 @@ function displayLineCode(inputId, outputId) {
         outputText = "Your Line code is " + lineCode;
     }
     catch (error) {
+        console.log(error.message);
         outputText = error.message;
     }
     document.getElementById(outputId).innerHTML = outputText;
