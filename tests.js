@@ -15,12 +15,6 @@ QUnit.test("Test the getLineCode() function.", function (assert) {
 });
 QUnit.test("Test the phoneNumberValidator() function.", function(assert) {
     var num = "(415) 453-4352";
-    phoneNumberValidator(num);
-    assert.deepEqual(document.getElementById("output").value, "Your phone number (415) 453-4352 is valid", "We expect the value to be VALID.");
-    var num = "4153335678";
-    phoneNumberValidator(num);
-    assert.deepEqual(document.getElementById("output").value, "INVALID", "We expect the result to be INVALID.");
-    var num = "435";
-    phoneNumberValidator(num);
-    assert.deepEqual(document.getElementById("output").value, "INVALID", "We expect the result to be INVALID.");
+    var result = phoneNumberValidator(num);
+    assert.deepEqual(result, "(415) 453-4352", "We expect the value to be VALID.");
 });
