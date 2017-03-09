@@ -37,7 +37,7 @@ function getAreaCode(phoneNum) {
         }
     }
     catch (error) {
-        throw new Error("Invalid phone number: " + error.message);
+        throw new Error(error.message);
     }
 }
 /**
@@ -78,7 +78,7 @@ function getCoCode(phoneNum) {
         }
     }
     catch (error) {
-        throw new Error("Invalid phone number: " + error.message);
+        throw new Error(error.message);
     }
 }
 /**
@@ -108,9 +108,13 @@ function displayCoCode(inputId, outputId) {
  */
 function getLineCode(phoneNum) {
     var lineCode;
+    var Index
     try {
-        lineCode = phoneNum.slice((phoneNum.length - 4));
-        lineCode = lineCode.trim();
+        Index = phoneNum.indexOf("-");
+        lineCode = phoneNum.slice((Index + 1));
+        if (Index == -1) {
+            throw new Error("Invalid Line code: No - found")
+        }
         if (lineCode.length == 4 && Number(lineCode)) {
             return lineCode;
         }
@@ -119,7 +123,7 @@ function getLineCode(phoneNum) {
         }
     }
     catch (error) {
-        throw new Error("Invalid phone number: " + error.message);
+        throw new Error(error.message);
     }
 }
 /**
@@ -151,7 +155,7 @@ function phoneNumberValidator(phoneNum) {
     if ((getCoCode(phoneNum)).isNaN) {
         return getCoCode(phoneNum);
     }
-    if (phoneNum.length != 13) {
+    if (phoneNum.length != 14) {
         throw new Error("Invalid phone number: Incorrect length")
     }
     else {
@@ -167,7 +171,7 @@ function displayPhoneNumberValidator(inputId, outputId) {
         outputText = "Your phone number " + phoneNum + " is valid";
     }
     catch (error) {
-        outputText = error.message;
+        outputText = "Your phone number " + phoneNum + " is invalid. Please write in in format (###) ###-####.";
     }
     document.getElementById(outputId).innerHTML = outputText;
 }
