@@ -145,7 +145,12 @@ function displayLineCode(inputId, outputId) {
     }
     document.getElementById(outputId).innerHTML = outputText;
 }
-
+/**
+ * Uses getAreaCode, getLineCode, getCoCode functions to determine whether or not each section of the phone numer is valid. Determines whether phone numer is too long
+ * @param   {string} phoneNum The phone number
+ * @returns {string} the phone number
+ * @throws {Error} If any of the phone number is invalid
+ */
 function phoneNumberValidator(phoneNum) {
     if ((getAreaCode(phoneNum)).isNaN) {
         return getAreaCode(phoneNum);
@@ -163,7 +168,11 @@ function phoneNumberValidator(phoneNum) {
         return phoneNum;
     }
 }
-
+/**
+ * Displays the phone number code for an inputted phone number along with a message for the user
+ * @param {string} inputId  The element id for the text box
+ * @param {string} outputId The element id of message div
+ */
 function displayPhoneNumberValidator(inputId, outputId) {
     var outputText = "";
     var phoneNum = document.getElementById(inputId).value;
